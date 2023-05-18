@@ -1,23 +1,26 @@
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Todo from './Components/Todo';
+import Input from './Components/Input';
+
 function App() {
+  
+  const[todoList, setTodoList] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>To Do List</h2>
+      <div>
+        <h4>Add a new thing to do:</h4>
+
+        <Input todoList = {todoList} setTodoList = {setTodoList}></Input>
+
+        <h4>You need to do these things:</h4>
+
+        {todoList.map((todo, i) => <Todo key = {i} index = {i} todoList = {todoList} setTodoList = {setTodoList}></Todo>)}
+      </div>
     </div>
   );
 }
